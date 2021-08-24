@@ -1,0 +1,4 @@
+flask
+flask_restfull
+opencv-python
+imutils
