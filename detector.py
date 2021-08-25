@@ -2,15 +2,16 @@
 import cv2
 import imutils
 import numpy as np
-import json
 import base64
 
 in_img_path = "./input_img.jpg"
 out_img_path = "./output_img.jpg" 
 
+
 class Detector:
+
     def __init__(self):
-        print("Detector init")
+        print("Detector initialized")
 
     def detect(self):
 
@@ -47,8 +48,3 @@ class Detector:
             base_encoded = base64.b64encode(imageFile.read()).decode('ascii')
 
         return base_encoded
-
-
-detector = Detector()
-count = detector.detect()
-image = detector.get_image()

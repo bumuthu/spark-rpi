@@ -2,12 +2,14 @@ from flask_restful import Resource
 from detector import Detector
 import json
 
+
 class Controller(Resource):
 
     def __init__(self):
-        print('Controller got response...')
+        print('Controller got response')
 
-    def get(self):        
+    def get(self):   
+             
         detector = Detector()
         count = detector.detect()
         img = detector.get_image()
