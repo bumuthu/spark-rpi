@@ -4,8 +4,8 @@ import imutils
 import numpy as np
 import base64
 
-in_img_path = "./input_img.jpg"
-out_img_path = "./output_img.jpg" 
+in_img_path = "./images/input_img.jpg"
+out_img_path = "./images/output_img.jpg" 
 
 
 class Detector:
