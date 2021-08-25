@@ -1,4 +1,6 @@
 from flask_restful import Resource
+from detector import Detector
+import json
 
 class Controller(Resource):
 
@@ -8,5 +10,6 @@ class Controller(Resource):
     def get(self):        
         detector = Detector()
         count = detector.detect()
+        img = detector.get_image()
 
-        return {"count" : count}, 200
+        return json.dumps({"count" : count, "processed_img": img }), 200

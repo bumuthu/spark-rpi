@@ -2,14 +2,20 @@
 import cv2
 import imutils
 import numpy as np
-# import matplotlib.pyplot as plt
+import json
+import base64
+
+in_img_path = "./input_img.jpg"
+out_img_path = "./output_img.jpg" 
 
 class Detector:
     def __init__(self):
         print("Detector init")
 
     def detect(self):
-        image = cv2.imread("./coin.jpg")
+
+        image = cv2.imread(in_img_path)
+        self.image = image
         image_blur = cv2.medianBlur(image,25)
         image_blur_gray = cv2.cvtColor(image_blur, cv2.COLOR_BGR2GRAY)
 
@@ -23,24 +29,26 @@ class Detector:
         cnts = cv2.findContours(last_image.copy(), cv2.RETR_EXTERNAL,
             cv2.CHAIN_APPROX_SIMPLE)
         cnts = imutils.grab_contours(cnts)
+        self.cnts = cnts
 
         return len(cnts)
 
-    # def draw(self):
-        
-    #     for (i, c) in enumerate(cnts):
-    #         ((x, y), _) = cv2.minEnclosingCircle(c)
-    #         cv2.putText(image, "#{}".format(i + 1), (int(x) - 45, int(y)+20),
-    #             cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
-    #         cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
+    def get_image(self):
 
-    #     display(image,len(cnts))
+        for (i, c) in enumerate(self.cnts):
+            ((x, y), _) = cv2.minEnclosingCircle(c)
+            cv2.putText(self.image, "#{}".format(i + 1), (int(x) - 45, int(y)+20),
+                cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
+            cv2.drawContours(self.image, [c], -1, (0, 255, 0), 2)
 
-    # def display(self, img,count,cmap="gray"):
-    #     f_image = cv2.imread("coin.jpg")
-    #     f, axs = plt.subplots(1,2,figsize=(12,5))
-    #     axs[0].imshow(f_image,cmap="gray")
-    #     axs[1].imshow(img,cmap="gray")
-    #     axs[1].set_title("Total Money Count = {}".format(count))
+        cv2.imwrite(out_img_path, self.image)
+
+        with open(out_img_path, "rb") as imageFile:
+            base_encoded = base64.b64encode(imageFile.read()).decode('ascii')
+
+        return base_encoded
 
 
+detector = Detector()
+count = detector.detect()
+image = detector.get_image()
