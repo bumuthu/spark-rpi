@@ -1,5 +1,7 @@
 # Spark RPi Demo Project
 
+## Setting up and running
+
 Clone the project and run this command to install the python libraries using pip
 
     pip install -r requirements.txt
@@ -8,7 +10,7 @@ Now, run the following command to start the server
 
     python server.py
 
-# API
+## API specification
 
 Get Request: `http://<host_ip>:8080/api/object-count`
 
