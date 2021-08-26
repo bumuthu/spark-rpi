@@ -4,11 +4,11 @@
 
 Clone the project and run this command to install the python libraries using pip
 
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
 Now, run the following command to start the server
 
-    python server.py
+    python3 server.py
 
 ## API specification
 
