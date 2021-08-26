@@ -13,6 +13,11 @@ class Detector:
     def __init__(self):
         print("Detector initialized")
 
+    def capture_image(self):
+        print("Capturing image")
+        # Code goes here
+        # save image using in_img_path        
+
     def detect(self):
 
         image = cv2.imread(in_img_path)

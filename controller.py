@@ -9,8 +9,9 @@ class Controller(Resource):
         print('Controller got response')
 
     def get(self):   
-             
+
         detector = Detector()
+        detector.capture_image()
         count = detector.detect()
         img = detector.get_image()
 
